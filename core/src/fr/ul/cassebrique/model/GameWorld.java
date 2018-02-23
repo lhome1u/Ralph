@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class GameWorld {
 
-    public static final float METERS_TO_PIXELS = 250;
-    public static final float PIXELS_TO_METERS = 1/250;
+    public static final float METERS_TO_PIXELS = 250F;
+    public static final float PIXELS_TO_METERS = 1/250F;
 
     protected GameScreen gs;
     protected Wall wall;
@@ -52,8 +52,8 @@ public class GameWorld {
 
 
                 ball.ballBody.setLinearVelocity (
-                        ball.ballBody.getLinearVelocity().x * 2,
-                        - ball.ballBody.getLinearVelocity().y * 2
+                        (ball.ballBody.getLinearVelocity().x * 2) * METERS_TO_PIXELS ,
+                        (- ball.ballBody.getLinearVelocity().y * 2) * METERS_TO_PIXELS
                 ) ;
             }
 
@@ -110,7 +110,7 @@ public class GameWorld {
 
     public void setSpeed(){
         int rand = (int)(Math.random()*400)-200;
-        balls.get(0).ballBody.setLinearVelocity(rand,200 );
+        balls.get(0).ballBody.setLinearVelocity(rand * METERS_TO_PIXELS,200 * METERS_TO_PIXELS);
     }
 
     public Body getBodyBrickColl() {

@@ -16,11 +16,7 @@ public class Wall {
             {new BlueBrick(), new BlueBrick(), new BlueBrick(),  new GreenBrick(2), new BlueBrick(), new BlueBrick(),  new GreenBrick(2), new BlueBrick(), new BlueBrick(), new BlueBrick()},
             {new BlueBrick(), new BlueBrick(), new BlueBrick(), new BlueBrick(),  new GreenBrick(2),  new GreenBrick(2), new BlueBrick(), new BlueBrick(), new BlueBrick(), new BlueBrick()},
             {null, new BlueBrick(), null, null, new BlueBrick(), new BlueBrick(), null, null, new BlueBrick(), null},
-            {new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2)},
-            {new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2)},
-            {new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2)},
-            {new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2), new GreenBrick(2)}
-    } ;
+     } ;
     protected GameWorld gw;
 
     public Wall(GameWorld w){
@@ -56,15 +52,6 @@ public class Wall {
             for(int j = 0; j < nbC ; j++) {
                 Brick currBrick = wall[i][j] ;
                 if (currBrick == null) { continue ; }
-                /*if (currBrick.getBrickBody() == gw.getBodyBrickColl()) {
-                    currBrick.collision() ;
-                    if (currBrick.getVie() == 0) {
-                        gw.world.destroyBody(currBrick.getBrickBody()) ;
-                        wall[i][j] = null ;
-                        gw.emptyBodyBrickColl();
-                        continue ;
-                    }
-                }*/
                 currBrick.draw(sb) ;
             }
         }

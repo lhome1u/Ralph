@@ -23,11 +23,11 @@ public class Ball {
         bd.fixedRotation = false;
 
         ballBody =gw.getWorld().createBody(bd);
-        ballBody.setTransform(new Vector2(x,y), 0);
+        ballBody.setTransform(new Vector2(x* GameWorld.PIXELS_TO_METERS,y* GameWorld.PIXELS_TO_METERS), 0);
 
         CircleShape shape = new CircleShape();
-        shape.setPosition(new Vector2(RAYON,RAYON));
-        shape.setRadius(RAYON);
+        shape.setPosition(new Vector2(RAYON* GameWorld.PIXELS_TO_METERS,RAYON* GameWorld.PIXELS_TO_METERS));
+        shape.setRadius(RAYON* GameWorld.PIXELS_TO_METERS);
 
         FixtureDef fd = new FixtureDef();
         fd.shape = shape;
@@ -42,7 +42,7 @@ public class Ball {
 
 
     public void draw(SpriteBatch sb){
-        sb.draw(TextureFactory.getTexBall(), ballBody.getPosition().x, ballBody.getPosition().y);
+        sb.draw(TextureFactory.getTexBall(), ballBody.getPosition().x* GameWorld.METERS_TO_PIXELS, ballBody.getPosition().y* GameWorld.METERS_TO_PIXELS);
     }
 
 

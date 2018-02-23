@@ -31,16 +31,16 @@ public class Background {
 
         Vector2[] vects = {
                 // bas gauche
-                new Vector2((BORDER ),0),
+                new Vector2((BORDER )* GameWorld.PIXELS_TO_METERS,0),
 
                 // haut gauche
-                new Vector2((BORDER ), (WORLD_HEIGHT) ),
+                new Vector2((BORDER )* GameWorld.PIXELS_TO_METERS, (WORLD_HEIGHT)* GameWorld.PIXELS_TO_METERS ),
 
                 //haut droite
-                new Vector2((WORLD_WIDTH_BORDER -BORDER )  , (WORLD_HEIGHT)) ,
+                new Vector2((WORLD_WIDTH_BORDER -BORDER )* GameWorld.PIXELS_TO_METERS  , (WORLD_HEIGHT)* GameWorld.PIXELS_TO_METERS) ,
 
                 //bas droite
-                new Vector2((WORLD_WIDTH_BORDER -BORDER ) , 0)
+                new Vector2((WORLD_WIDTH_BORDER -BORDER )* GameWorld.PIXELS_TO_METERS , 0)
         };
 
 

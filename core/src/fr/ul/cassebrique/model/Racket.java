@@ -32,7 +32,7 @@ public class Racket {
     }
 
     public void draw(SpriteBatch sb){
-        sb.draw(TextureFactory.getTexRacket(), pos.x, pos.y);
+        sb.draw(TextureFactory.getTexRacket(), pos.x , pos.y );
         //sb.draw(TextureFactory.getTexRacket(), racketBody.getPosition().x, racketBody.getPosition().y);
     }
 
@@ -63,17 +63,17 @@ public class Racket {
             pos.x += PAS ;
 
             bdBody.setTransform (
-                    bdBody.getPosition().x + PAS,
+                    bdBody.getPosition().x + (PAS * GameWorld.PIXELS_TO_METERS),
                     bdBody.getPosition().y,
                     0
             ) ;
             milieuBody.setTransform (
-                    milieuBody.getPosition().x + PAS,
+                    milieuBody.getPosition().x + (PAS * GameWorld.PIXELS_TO_METERS),
                     milieuBody.getPosition().y,
                     0
             ) ;
             bgBody.setTransform (
-                    bgBody.getPosition().x + PAS,
+                    bgBody.getPosition().x + (PAS * GameWorld.PIXELS_TO_METERS),
                     bgBody.getPosition().y,
                     0
             ) ;
@@ -103,17 +103,17 @@ public class Racket {
             pos.x -= PAS ;
 
             bdBody.setTransform (
-                    bdBody.getPosition().x - PAS,
+                    bdBody.getPosition().x - (PAS * GameWorld.PIXELS_TO_METERS),
                     bdBody.getPosition().y,
                     0
             ) ;
             milieuBody.setTransform (
-                    milieuBody.getPosition().x - PAS,
+                    milieuBody.getPosition().x - (PAS * GameWorld.PIXELS_TO_METERS),
                     milieuBody.getPosition().y,
                     0
             ) ;
             bgBody.setTransform (
-                    bgBody.getPosition().x - PAS,
+                    bgBody.getPosition().x - (PAS * GameWorld.PIXELS_TO_METERS),
                     bgBody.getPosition().y,
                     0
             ) ;
@@ -144,11 +144,11 @@ public class Racket {
         BodyDef bodyDef1 = new BodyDef() ;
         bodyDef1.type    = BodyDef.BodyType.StaticBody ;
         bodyDef1.fixedRotation = false ;
-        bodyDef1.position.set(x + RAYON, y + RAYON) ;
+        bodyDef1.position.set((x + RAYON)* GameWorld.PIXELS_TO_METERS, (y + RAYON)* GameWorld.PIXELS_TO_METERS) ;
         bgBody = gw.getWorld().createBody(bodyDef1) ;
 
         CircleShape shapeBGauche = new CircleShape() ;
-        shapeBGauche.setRadius(RAYON) ;
+        shapeBGauche.setRadius(RAYON * GameWorld.PIXELS_TO_METERS) ;
 
         FixtureDef fixtureDef1  = new FixtureDef() ;
         fixtureDef1.shape       = shapeBGauche ;
@@ -164,13 +164,13 @@ public class Racket {
 
         Vector2[] tab = new Vector2[4];
         //bas à gauche
-        tab[0] = new Vector2(x + RAYON * 2, y);
+        tab[0] = new Vector2((x + RAYON * 2) * GameWorld.PIXELS_TO_METERS, y * GameWorld.PIXELS_TO_METERS);
         //haut à gauche
-        tab[1] = new Vector2(x + RAYON * 2, y + heightRack);
+        tab[1] = new Vector2((x + RAYON * 2) * GameWorld.PIXELS_TO_METERS, (y + heightRack) * GameWorld.PIXELS_TO_METERS);
         //haut à droite
-        tab[2] = new Vector2(x + widthRack - RAYON * 2, y + heightRack);
+        tab[2] = new Vector2((x + widthRack - RAYON * 2) * GameWorld.PIXELS_TO_METERS, (y + heightRack) * GameWorld.PIXELS_TO_METERS);
         //bas à droite
-        tab[3] = new Vector2(x + widthRack - RAYON * 2, y);
+        tab[3] = new Vector2((x + widthRack - RAYON * 2 ) * GameWorld.PIXELS_TO_METERS, y * GameWorld.PIXELS_TO_METERS);
 
         PolygonShape shapeBMilieu = new PolygonShape();
         shapeBMilieu.set(tab);
@@ -191,11 +191,11 @@ public class Racket {
         BodyDef bodyDef3 = new BodyDef() ;
         bodyDef3.type    = BodyDef.BodyType.StaticBody ;
         bodyDef3.fixedRotation = false ;
-        bodyDef3.position.set(x + widthRack - RAYON , y + RAYON) ;
+        bodyDef3.position.set((x + widthRack - RAYON ) * GameWorld.PIXELS_TO_METERS, (y + RAYON) * GameWorld.PIXELS_TO_METERS) ;
         bdBody = gw.getWorld().createBody(bodyDef3) ;
 
         CircleShape shapeBDroite =  new CircleShape() ;
-        shapeBDroite.setRadius(RAYON) ;
+        shapeBDroite.setRadius(RAYON * GameWorld.PIXELS_TO_METERS) ;
 
         FixtureDef fixtureDef3  = new FixtureDef() ;
         fixtureDef3.shape       = shapeBDroite ;

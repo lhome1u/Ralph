@@ -23,6 +23,7 @@ public class GameScreen extends ScreenAdapter {
     public GameScreen(){
         sb = new SpriteBatch();
         cam= new OrthographicCamera(1150, 700);
+        //cam= new OrthographicCamera(7, 3);
 
         cam.position.set(cam.viewportWidth / 2f, cam.viewportHeight / 2f, 0);
         cam.update();

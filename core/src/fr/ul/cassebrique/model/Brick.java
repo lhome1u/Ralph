@@ -64,16 +64,16 @@ public abstract class Brick {
 
         Vector2[] vects = {
                 // bas gauche
-                new Vector2((posX) ,(posY)),
+                new Vector2((posX)* GameWorld.PIXELS_TO_METERS ,(posY)* GameWorld.PIXELS_TO_METERS),
 
                 // haut gauche
-                new Vector2((posX) , (posY + BRICK_HEIGHT ) ),
+                new Vector2((posX)* GameWorld.PIXELS_TO_METERS , (posY + BRICK_HEIGHT )* GameWorld.PIXELS_TO_METERS ),
 
                 //haut droite
-                new Vector2((posX + BRICK_WIDTH ) , (posY + BRICK_HEIGHT )),
+                new Vector2((posX + BRICK_WIDTH )* GameWorld.PIXELS_TO_METERS , (posY + BRICK_HEIGHT )* GameWorld.PIXELS_TO_METERS),
 
                 //bas droite
-                new Vector2( (posX + BRICK_WIDTH ) , (posY ) )
+                new Vector2( (posX + BRICK_WIDTH )* GameWorld.PIXELS_TO_METERS , (posY )* GameWorld.PIXELS_TO_METERS )
         };
 
 
@@ -92,9 +92,7 @@ public abstract class Brick {
     }
 
     public void collision() {
-        System.out.print("from " + vie) ;
         --vie;
-        System.out.println(" to " + vie) ;
 
     }
 }
