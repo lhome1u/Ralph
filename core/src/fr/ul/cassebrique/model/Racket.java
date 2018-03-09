@@ -56,6 +56,15 @@ public class Racket {
         this.pos = pos;
     }
 
+    public void replace() {
+        int widthRack  = TextureFactory.getTexRacket().getWidth() ;
+
+        pos = new Vector2( (TextureFactory.getTexBack().getWidth() /2) - (RACKET_WIDTH /2)-20, 50);
+        bdBody.setTransform((pos.x + RAYON)* GameWorld.PIXELS_TO_METERS, (pos.y + RAYON)* GameWorld.PIXELS_TO_METERS , 0); ;
+        milieuBody.setTransform((pos.x + RAYON*2) * GameWorld.PIXELS_TO_METERS, (pos.y + RAYON)* GameWorld.PIXELS_TO_METERS, 0); ;
+        bgBody.setTransform((pos.x + widthRack - RAYON ) * GameWorld.PIXELS_TO_METERS, (pos.y + RAYON) * GameWorld.PIXELS_TO_METERS, 0); ;
+    }
+
     public void droite() {
 
         int wBordure = Background.WORLD_WIDTH_BORDER - RACKET_WIDTH ;
@@ -209,24 +218,6 @@ public class Racket {
     public ArrayList<Body> getBodies() {
         return bodys;
     }
+
+
 }
-
-
-/*
-* public void destroyBrick() {
-        for (int i = 0; i < nbL; i++) {
-            for(int j = 0; j < nbC ; j++) {
-                Brick brick = wall[i][j];
-                if(brick == null){
-                    continue;
-                }
-                if (brick.getBrickBody() == gw.getBodyBrickColl()) {
-                    brick.collision();
-                    if (brick.getVie() == 0) {
-                        gw.world.destroyBody(brick.getBrickBody());
-                        wall[i][j] = null;
-                    }
-                }
-            }
-        }
-    }*/

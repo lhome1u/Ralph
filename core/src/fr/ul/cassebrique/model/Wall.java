@@ -18,6 +18,7 @@ public class Wall {
             {null, new BlueBrick(), null, null, new BlueBrick(), new BlueBrick(), null, null, new BlueBrick(), null},
      } ;
     protected GameWorld gw;
+    protected int nbBricks = 0;
 
     public Wall(GameWorld w){
         nbL = wallInit.length;
@@ -41,7 +42,7 @@ public class Wall {
                     currBrick.setPosX(50 + BRICK_WIDTH*j);
                     currBrick.setPosY(550 - BRICK_HEIGHT*i);
                     currBrick.creationBody();
-
+                    ++nbBricks;
                 }
             }
         }
@@ -67,12 +68,17 @@ public class Wall {
                 if (wall[i][j].getBrickBody() == body) {
                     wall[i][j].collision();
                     if (wall[i][j].getVie() == 0) {
-                        gw.getWorld().destroyBody(wall[i][j].getBrickBody());
+                        gw.destroy(wall[i][j].getBrickBody());
                         wall[i][j] = null;
+                        --nbBricks;
                     }
                     break;
                 }
             }
         }
+    }
+
+    public boolean wallDestroyed(){
+        return nbBricks == 0;
     }
 }

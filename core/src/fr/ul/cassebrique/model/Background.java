@@ -41,6 +41,9 @@ public class Background {
 
                 //bas droite
                 new Vector2((WORLD_WIDTH_BORDER -BORDER )* GameWorld.PIXELS_TO_METERS , 0)
+
+                // debug
+               // ,new Vector2((BORDER )* GameWorld.PIXELS_TO_METERS,0)
         };
 
 

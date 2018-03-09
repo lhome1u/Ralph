@@ -19,6 +19,8 @@ public class GameScreen extends ScreenAdapter {
     protected int timeIter;
     private OrthographicCamera cam;
     private Box2DDebugRenderer debugRenderer;
+    private boolean ballLost = false;
+    private boolean gameLost = false;
 
     public GameScreen(){
         sb = new SpriteBatch();
@@ -39,6 +41,13 @@ public class GameScreen extends ScreenAdapter {
         sb.end();
         debugRenderer.render(gw.getWorld(), cam.combined);
         update();
+        if(gw.ballLost()) {
+            if(gw.looseGame()) {
+                sb.draw(TextureFactory.getTexPerte(), 0, 0);
+            }else{
+                sb.draw(TextureFactory.getTexPerteBalle(), 0, 0);
+            }
+        }
     }
 
     public void dispose(){
@@ -62,29 +71,12 @@ public class GameScreen extends ScreenAdapter {
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
             r.droite();
         }
+        if(gw.ballLost()){
+            ballLost = true;
+            if(!gw.looseGame()){
+                gw.replace();
+                gameLost = true ;
+            }
+        }
     }
 }
-
-
-/*
-* Class gamescreen
-attribut :
-private OrthographicCamera cam;
-private Box2DDebugRenderer debugRenderer;
-
-constructeur :
-cam= new OrthographicCamera(1150, 700);
-
-cam.position.set(cam.viewportWidth / 2f, cam.viewportHeight / 2f, 0);
-cam.update();
-debugRenderer = new Box2DDebugRenderer();
-
-
-render :
-avant le begin
-cam.update();
-sb.setProjectionMatrix(cam.combined);
-
-apres le end
-debugRenderer.render(gw.getWorld(), cam.combined);
-* */

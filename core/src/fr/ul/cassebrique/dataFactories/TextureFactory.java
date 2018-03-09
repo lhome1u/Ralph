@@ -13,6 +13,10 @@ public class TextureFactory {
     protected static Texture texBorder = new Texture("images/Contour.png");
     protected static Texture texRacket = new Texture("images/Barre.png");
 
+    protected static Texture texBravo = new Texture("images/Bravo.bmp");
+    protected static Texture texPerteBalle = new Texture("images/PerteBalle.bmp");
+    protected static Texture texPerte = new Texture("images/Perte.bmp");
+
     public TextureFactory(){
     }
 
@@ -35,4 +39,10 @@ public class TextureFactory {
     public static Texture getTexBorder() { return texBorder; }
 
     public static Texture getTexRacket() { return texRacket; }
+
+    public static Texture getTexBravo() { return texBravo; }
+
+    public static Texture getTexPerteBalle() { return texPerteBalle; }
+
+    public static Texture getTexPerte() { return texPerte; }
 }

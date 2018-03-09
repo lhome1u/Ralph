@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class GameWorld {
 
-    public static final float METERS_TO_PIXELS = 250F;
-    public static final float PIXELS_TO_METERS = 1/250F;
+    public static final float METERS_TO_PIXELS = 250f;
+    public static final float PIXELS_TO_METERS = 1/250f;
 
     protected GameScreen gs;
     protected Wall wall;
@@ -48,13 +48,20 @@ public class GameWorld {
                     // collision avec une brique
                     bodyBrickColl = other;
                 }
+                if (wm.getNormal().x != 0) {
+                    ball.ballBody.setLinearVelocity (
+                            - ball.ballBody.getLinearVelocity().x,
+                            ball.ballBody.getLinearVelocity().y
+                    ) ;
+                }else {
 
-
-
-                ball.ballBody.setLinearVelocity (
-                        (ball.ballBody.getLinearVelocity().x * 2) * METERS_TO_PIXELS ,
-                        (- ball.ballBody.getLinearVelocity().y * 2) * METERS_TO_PIXELS
-                ) ;
+                    //if (wm.getNormal().y != 0) {
+                        ball.ballBody.setLinearVelocity(
+                                ball.ballBody.getLinearVelocity().x,
+                                -ball.ballBody.getLinearVelocity().y
+                        );
+                   // }
+                }
             }
 
             @Override
@@ -81,7 +88,7 @@ public class GameWorld {
     }
 
     private void placementBalls() {
-        balls.add(new Ball(this,racket.pos.x + (Racket.getRacketWidth()/2) - Ball.RAYON, racket.pos.y + Racket.getRacketHeight()));
+        balls.add(new Ball(this,racket.pos.x + (Racket.getRacketWidth()/2) - Ball.RAYON, racket.pos.y + Racket.getRacketHeight() +8));
         balls.add(new Ball(this, Background.WORLD_WIDTH_BORDER + (Background.BORDER/4), (Background.BORDER/4)));
         balls.add(new Ball(this, Background.WORLD_WIDTH_BORDER + (Background.BORDER/4), Background.BORDER+ (25/2)));
     }
@@ -98,6 +105,7 @@ public class GameWorld {
             wall.destroyBrick(bodyBrickColl);
             bodyBrickColl = null;
         }
+
     }
 
     public Racket getRacket() {
@@ -108,18 +116,31 @@ public class GameWorld {
         return world;
     }
 
-    public void setSpeed(){
-        int rand = (int)(Math.random()*400)-200;
-        balls.get(0).ballBody.setLinearVelocity(rand * METERS_TO_PIXELS,200 * METERS_TO_PIXELS);
+    void setSpeed() {
+        float rdm = (float) (Math.random() * (200 - (-200))) + (-200);
+        balls.get(0).ballBody.setLinearVelocity(rdm *0.01f * PIXELS_TO_METERS, 200 *0.01f * PIXELS_TO_METERS);
     }
 
-    public Body getBodyBrickColl() {
-        return bodyBrickColl;
+    public boolean ballLost(){
+        if(balls.get(0).estSortie()){
+            balls.remove(0);
+            return true;
+        }
+        return false;
     }
 
-    public void emptyBodyBrickColl() {
-        bodyBrickColl = null ;
+    public void replace(){
+        //racket.replace();
+        System.out.println(balls.get(0).ballBody.getPosition());
+        balls.get(0).setPosition(racket.pos.x + (Racket.getRacketWidth()/2) - Ball.RAYON, racket.pos.y + Racket.getRacketHeight() +8);
+        System.out.println(balls.get(0).ballBody.getPosition());
+        if(balls.get(1) != null){
+            balls.get(0).setPosition(Background.WORLD_WIDTH_BORDER + (Background.BORDER/4), (Background.BORDER/4));
+        }
+        //setSpeed();
     }
+
+    public boolean looseGame(){return balls.isEmpty();}
 
     public void destroy(Body brickBody) {
         world.destroyBody(brickBody);

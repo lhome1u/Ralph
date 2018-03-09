@@ -20,7 +20,7 @@ public class Ball {
         BodyDef bd = new BodyDef();
         bd.type = BodyDef.BodyType.DynamicBody;
         bd.bullet = true;
-        bd.fixedRotation = false;
+        bd.fixedRotation = true;
 
         ballBody =gw.getWorld().createBody(bd);
         ballBody.setTransform(new Vector2(x* GameWorld.PIXELS_TO_METERS,y* GameWorld.PIXELS_TO_METERS), 0);
@@ -40,10 +40,16 @@ public class Ball {
 
     }
 
+    public boolean estSortie(){
+        return ballBody.getPosition().y < 0 - ( RAYON * GameWorld.PIXELS_TO_METERS) ;
+    }
 
     public void draw(SpriteBatch sb){
         sb.draw(TextureFactory.getTexBall(), ballBody.getPosition().x* GameWorld.METERS_TO_PIXELS, ballBody.getPosition().y* GameWorld.METERS_TO_PIXELS);
     }
 
 
+    public void setPosition(float v, float v1) {
+        ballBody.setTransform(v * GameWorld.PIXELS_TO_METERS, v1 * GameWorld.PIXELS_TO_METERS, 0);
+    }
 }
